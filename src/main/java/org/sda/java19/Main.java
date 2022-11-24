@@ -137,7 +137,7 @@ public class Main {
     Teine viis kuidas kirjutada uude txt faili:
 
     Path carPath = Paths.get("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced-coding\\src\\main\\resources\\cars.txt");
-    Files.write(carPath,convertObjectListToString(Collections.singletonList()), StandardOpenOption.WRITE);
+    Files.write(carPath, convertObjectListToStringList(Collections.singletonList(carList)), StandardOpenOption.WRITE);
     private static List<String>convertObjectListToString(List<Object> objectList){
 
         return objectList.stream()
