@@ -8,12 +8,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Path vehiclePath = Paths.get("C:\\VID\\ws\\java-advanced-coding\\src\\main\\resources\\vehicles.txt");
+        Path vehiclePath = Paths.get("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced-coding\\src\\main\\resources\\vehicles.txt");
 
         //File Reading
         List<String> fileLines = Files.readAllLines(vehiclePath, StandardCharsets.UTF_8);
@@ -65,15 +66,47 @@ public class Main {
 
                     bicycleList.add(bicycle);
                     break;
+
                 default:
                     System.out.println("Invalid vehicle!");
             }
+
         }
+
 
         //#2
         System.out.println("Number of cars: " + carList.size());
         System.out.println("Number of motorcycles: " + motorcycleList.size());
         System.out.println("Number of tractors: " + tractorList.size());
+
+        //#3
+        // Brand count for cars
+        Map<String, Long> brandMapCars = carList.stream()
+                .collect(Collectors.groupingBy(Car::getBrand, Collectors.counting()));
+        System.out.println(brandMapCars);
+        Map<String, Long> brandMapTractor = tractorList.stream()
+                .collect(Collectors.groupingBy(Tractor::getBrand, Collectors.counting()));
+        System.out.println(brandMapTractor);
+
+
+        // #4
+        //Sort by price
+        carList.stream()
+                .sorted(Comparator.comparing(Vehicle::getPrice))
+                .toList()
+                .forEach(car -> System.out.println(car.toString()));
+
+        // #5 Sort Choppers by top speed
+
+        motorcycleList.stream()
+                .filter(motorcycle -> VehicleShape.CHOPPER.equals(motorcycle.getVehicleShape()))
+                .sorted((Comparator.comparing(Motorcycle::getTopSpeed)))
+                .toList()
+                .forEach(motorcycle -> System.out.println(motorcycle.toString()));
+
+        //#6
+        Path carPath = Paths.get("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced-coding\\src\\main\\resources\\cars.txt");
+        Files.write(carPath, carList.stream().map(Car::toString).collect(Collectors.toList()), StandardOpenOption.WRITE);
 
 
     }
@@ -96,3 +129,29 @@ public class Main {
         }
     }
 }
+
+
+
+
+/*
+    Teine viis kuidas kirjutada uude txt faili:
+
+    Path carPath = Paths.get("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced-coding\\src\\main\\resources\\cars.txt");
+    Files.write(carPath,convertObjectListToString(Collections.singletonList()), StandardOpenOption.WRITE);
+    private static List<String>convertObjectListToString(List<Object> objectList){
+
+        return objectList.stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
+                */
+
+
+
+    /*
+  3. Personal information
+          a. Create a file containing any personal data (name, surname, phone number). Data of individual persons should be in the following lines.
+          b. Download data from a file and create objects of people based on them (in any way - Regex, String.split ...).
+          c. Enter the created objects into ArrayList or Map (<line number>: <Person>).
+        d. Present the obtained data.
+
+     */
