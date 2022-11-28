@@ -24,16 +24,6 @@ import java.util.*;
  */
 public class Main {
 
-    /*
-    1.create WareHouse , Product, ProductCategory(enum) , Currency(enum) -models package
-    2.Warehouse : name, List of products, address, isActive
-    3.Product: name, price, quantity, product category, currency, isAvailable
-    4. Create Warehouse object, Before create list of products.
-    5. In main method, switch case for various operations.
-    6. For each operation, call service method and do the operation.
-
-     */
-
     public static void main(String[] args) throws WarehouseNotFoundException {
         /*
         1. Create Warehouse, Product, ProductCategory (enum), Currency (enum) - models package
@@ -62,23 +52,62 @@ public class Main {
     private static void productOperations() throws WarehouseNotFoundException {
         ProductService productService = new ProductServiceImpl();
 
+        int displayMenu = warehouseMenu();
 
-        int option = getOption();
 
-        switch (option) {
-            case 0: //Add a product
+        switch (displayMenu) {
+            case 0: // add product
                 productService.addProduct(addProduct());
                 break;
-            case 1: //Update a product
+            case 1: // update product
+                productService.updateProduct(updateProduct());
+                break;
+            case 2: // display products
+                productService.getAllProducts();
+                break;
+            case 3: // delete product
+                productService.deleteProductByName(getAllProducts());
+                break;
+            case 4: // exit warehouse
+                break;
+            default:
+                System.out.println("Incorrect option, use the correct one!");
         }
     }
 
-    private static int getOption() {
+    private static String getAllProducts() throws WarehouseNotFoundException {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Products in the warehouse:");
+        ProductServiceImpl productService = new ProductServiceImpl();
+
+        return productService.getAllProducts().toString();
+    }
+
+
+    private static int getOption(int limit) {
         // User should be able to: add, display all of the details, update, delete an item
 
-        return 0;
+
+        Scanner scanner = new Scanner(System.in);
+        String errorMessage = "Incorrect option! Please enter again: ";
+        int option = limit + 1;
+
+        do {
+            if (!scanner.hasNextInt()) {
+                System.out.println(errorMessage);
+                scanner.next();
+            } else {
+                option = scanner.nextInt();
+
+                if (option > limit) {
+                    System.out.println(errorMessage);
+                }
+            }
+        } while (option > limit);
+
+        return option;
     }
+
 
     private static Product addProduct() {
         Scanner scanner = new Scanner(System.in);
@@ -99,9 +128,51 @@ public class Main {
         return product;
     }
 
-    private static Product updateProduct() {
-        //Need to display all the products and then ask user to which product to update.
+    private static Product updateProduct() throws WarehouseNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Warehouse products:");
 
-return null;
+        ProductServiceImpl productService = new ProductServiceImpl();
+        System.out.println("Choose a product: update or add another one: ");
+        System.out.println(productService.getAllProducts());
+
+
+        Product product = new Product();
+        if (product.getName().equals(scanner.next())) {
+            product.setName(scanner.next());
+            product.setQuantity(scanner.nextFloat());
+            product.setPrice(BigDecimal.valueOf(scanner.nextLong()));
+            product.setProductCategory(ProductCategory.valueOf(scanner.next()));
+        }
+        return (Product) List.of(product);
     }
+
+    private static String deleteProductByName() throws WarehouseNotFoundException {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the product to delete:");
+        String productName = scanner.next();
+
+        return productName;
+    }
+    private static int warehouseMenu() {
+
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("---------------");
+        System.out.println("------MENU-----");
+        System.out.println("---------------");
+
+        List<String> warehouseMenu = List.of("Add a product", "Delete a product", "Update product list", "Display all products", "Exit");
+
+        for (int i = 0; i < warehouseMenu.size(); i++) {
+            System.out.println(i + 1 + ". " + warehouseMenu.get(i));
+        }
+        System.out.println("Choose an option from above: ");
+        return scanner.nextInt();
+
+    }
+
+
 }
