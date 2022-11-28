@@ -62,16 +62,19 @@ public class Main {
             case 1: // update product
                 productService.updateProduct(updateProduct());
                 break;
-            case 2: // display products
+            case 2: // delete products
+                productService.deleteProductByName(deleteProductByName());
+                break;
+            case 3: // display product
                 productService.getAllProducts();
                 break;
-            case 3: // delete product
-                productService.deleteProductByName(getAllProducts());
+            case 4: // display summary
                 break;
-            case 4: // exit warehouse
+            case 5:
+                // sum of products and prices
                 break;
             default:
-                System.out.println("Incorrect option, use the correct one!");
+                System.out.println("Incorrect option, use the correct option!");
         }
     }
 
@@ -171,8 +174,9 @@ public class Main {
         }
         System.out.println("Choose an option from above: ");
         return scanner.nextInt();
-
     }
+
+
 
 
 }
