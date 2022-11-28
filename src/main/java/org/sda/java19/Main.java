@@ -167,7 +167,7 @@ public class Main {
         System.out.println("------MENU-----");
         System.out.println("---------------");
 
-        List<String> warehouseMenu = List.of("Add a product", "Delete a product", "Update product list", "Display all products", "Exit");
+        List<String> warehouseMenu = List.of("Add a product", "Update product list", "Delete a product", "Display all products", "Display summary", "Total cart", "Exit");
 
         for (int i = 0; i < warehouseMenu.size(); i++) {
             System.out.println(i + 1 + ". " + warehouseMenu.get(i));
