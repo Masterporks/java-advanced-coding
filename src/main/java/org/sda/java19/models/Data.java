@@ -128,26 +128,26 @@ return List.of(trainer1,trainer2,trainer3);
         Group group1 = new Group();
 
         group1.setName("Java19");
-        group1.setTrainer(Trainer.concat(Trainer.getFirstName()));
+        group1.setTrainer(getTrainerList().get(0));
         group1.setStudentList(getStudentList());
 
         Group group2 = new Group();
 
         group2.setName("Java20");
-        group2.setTrainer(Trainer.getFirstName().concat(TRAINER.getFirstName()));
+        group2.setTrainer(getTrainerList().get(2));
         group2.setStudentList(getStudentList());
 
 
         Group group3 = new Group();
 
         group3.setName("Java21");
-        group3.setTrainer(Trainer.getFirstName().concat(TRAINER.getFirstName()));
+        group3.setTrainer(getTrainerList().get(1));
         group3.setStudentList(getStudentList());
 
         Group group4 = new Group();
 
         group4.setName("Java22");
-        group4.setTrainer(TRAINER.getFirstName().concat(TRAINER.getFirstName()));
+        group4.setTrainer(getTrainerList().get(0));
         group4.setStudentList(getStudentList());
 
         return List.of(group1,group2,group3,group4);

@@ -51,24 +51,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-
-
-
-
-        Group group = new Group();
-        group.setName(Data.getGroupList();
-        group.setTrainer(Data.getTrainerList()
-                .stream()
-                .peek(trainer -> {
-                    if (trainer.isAuthorized()) {
-                        Data.getTrainerList().stream()
-                                .filter(trainer1 -> trainer1.isAuthorized() || trainer)
-                                .collect(Collectors.toList());
-                    }
-
-
-
-
-
+        private static void assignStudentsToGroup (List <Group> groupList) {
+        }
     }
 }
