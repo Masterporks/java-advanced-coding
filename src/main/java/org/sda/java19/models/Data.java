@@ -1,6 +1,7 @@
 package org.sda.java19.models;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Data {
@@ -10,7 +11,7 @@ public class Data {
         Student student1 = new Student();
         student1.setFirstName("Elmar");
         student1.setLastName("Konn");
-        student1.setDateOfBirth (LocalDate.of(1999,11,01));
+        student1.setDateOfBirth (LocalDate.of(1999,11,1));
         student1.setHasPreviousJavaKnowledge(true);
 
         Student student2 = new Student();
@@ -22,37 +23,37 @@ public class Data {
         Student student3 = new Student();
         student3.setFirstName("Martin");
         student3.setLastName("Kass");
-        student3.setDateOfBirth(LocalDate.of(1978,01,01));
+        student3.setDateOfBirth(LocalDate.of(1978,1,1));
         student3.setHasPreviousJavaKnowledge(false);
 
         Student student4 = new Student();
         student4.setFirstName("Peeter");
         student4.setLastName("Koer");
-        student4.setDateOfBirth(LocalDate.of(1990,02,02));
+        student4.setDateOfBirth(LocalDate.of(1990,2,2));
         student4.setHasPreviousJavaKnowledge(true);
 
         Student student5 = new Student();
         student5.setFirstName("Ilmar");
         student5.setLastName("Tuvi");
-        student5.setDateOfBirth(LocalDate.of(1992,03,03));
+        student5.setDateOfBirth(LocalDate.of(1992,3,3));
         student5.setHasPreviousJavaKnowledge(false);
 
         Student student6 = new Student();
         student6.setFirstName("Jimmy");
         student6.setLastName("Cooler");
-        student6.setDateOfBirth(LocalDate.of(1999,03,01));
+        student6.setDateOfBirth(LocalDate.of(1999,3,1));
         student6.setHasPreviousJavaKnowledge(true);
 
         Student student7 = new Student();
         student7.setFirstName("Johan");
         student7.setLastName("Cold");
-        student7.setDateOfBirth(LocalDate.of(1988,07,02));
+        student7.setDateOfBirth(LocalDate.of(1988,7,2));
         student7.setHasPreviousJavaKnowledge(false);
 
         Student student8 = new Student();
         student8.setFirstName("Maria");
         student8.setLastName("Smith");
-        student8.setDateOfBirth(LocalDate.of(1987,02,8);
+        student8.setDateOfBirth(LocalDate.of(1987,2,8));
         student8.setHasPreviousJavaKnowledge(false);
 
         Student student9 = new Student();
@@ -117,7 +118,7 @@ public class Data {
         Trainer trainer3 = new Trainer();
         trainer3.setFirstName("Mihkel");
         trainer3.setLastName("Ratas");
-        trainer3.setDateOfBirth(LocalDate.of(1989,14,11));
+        trainer3.setDateOfBirth(LocalDate.of(1989,11,11));
         trainer3.setAuthorized(true);
 
 return List.of(trainer1,trainer2,trainer3);
@@ -128,27 +129,23 @@ return List.of(trainer1,trainer2,trainer3);
         Group group1 = new Group();
 
         group1.setName("Java19");
-        group1.setTrainer(getTrainerList().get(0));
-        group1.setStudentList(getStudentList());
+
 
         Group group2 = new Group();
 
         group2.setName("Java20");
-        group2.setTrainer(getTrainerList().get(2));
-        group2.setStudentList(getStudentList());
+
 
 
         Group group3 = new Group();
 
         group3.setName("Java21");
-        group3.setTrainer(getTrainerList().get(1));
-        group3.setStudentList(getStudentList());
+
 
         Group group4 = new Group();
 
         group4.setName("Java22");
-        group4.setTrainer(getTrainerList().get(0));
-        group4.setStudentList(getStudentList());
+
 
         return List.of(group1,group2,group3,group4);
     }

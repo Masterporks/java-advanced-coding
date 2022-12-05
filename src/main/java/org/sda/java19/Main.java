@@ -1,13 +1,9 @@
 package org.sda.java19;
 
-import org.sda.java19.models.Data;
-import org.sda.java19.models.Group;
-import org.sda.java19.models.Student;
-import org.sda.java19.models.Trainer;
+import org.sda.java19.models.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -48,10 +44,51 @@ import java.util.stream.Collectors;
  * @author Joosep Korela
  */
 public class Main {
-    public static void main(String[] args) {
+    private static final int MAXIMUM_ALLOWED_STUDENTS = 5;
+
+    public static void main(String[] args) throws MaximumNumberOfStudentsReachedException {
+        List<Student> getStudentList = Data.getStudentList();
+        List<Trainer> getTrainerList = Data.getTrainerList();
+        List<Group> getGroupList = Data.getGroupList();
+
+assignTrainerToGroup(getGroupList, getTrainerList);
+assignStudentsToGroup(getGroupList, getStudentList);
 
 
-        private static void assignStudentsToGroup (List <Group> groupList) {
+        Tasks tasks = new Tasks();
+                tasks.sortByLastName();
+        }
+
+
+
+
+
+    private static void assignStudentsToGroup(List<Group> getGroupList, List<Student> getStudentList) throws MaximumNumberOfStudentsReachedException {
+        LinkedList<Student> studentLinkedList = new LinkedList<>(getStudentList);
+        for (Group group : getGroupList) {
+            List<Student> students = new ArrayList<>();
+
+            for (int i = 0; i <= 4; i++) {
+                if (group.getStudentList().size() >= MAXIMUM_ALLOWED_STUDENTS) {
+                    throw new MaximumNumberOfStudentsReachedException(group.getName());
+
+                }
+                if (!studentLinkedList.isEmpty()) {
+                    Random random = new Random();
+                    int nextStudentIndex = random.nextInt(studentLinkedList.size());
+                    students.add((getStudentList.get(nextStudentIndex)));
+                    studentLinkedList.remove(nextStudentIndex);
+
+                }
+                group.setStudentList(students);
+            }
+        }
+    }
+    private static void assignTrainerToGroup (List < Group > getGroupList, List < Trainer > getTrainerList){
+        for (Group group : getGroupList) {
+            Random random = new Random();
+            int nextTrainerIndex = random.nextInt(getTrainerList.size());
+            group.setTrainer(getTrainerList.get(nextTrainerIndex));
         }
     }
 }
